@@ -1,0 +1,28 @@
+{
+  "name": "naduke",
+  "version": "0.1.0",
+  "description": "A website to efficiently add custom emoji to Slack",
+  "keywords": [
+    "slack",
+    "emoji"
+  ],
+  "license": "MIT",
+  "author": "P-Chan",
+  "main": "./dist/index.html",
+  "scripts": {
+    "dev": "parcel ./src/index.html",
+    "build": "parcel build ./src/index.html",
+    "format": "prettier --write \"./src/**/*.{html,ts,tsx}\""
+  },
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.5"
+  }
+}
