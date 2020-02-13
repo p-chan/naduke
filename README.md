@@ -1,3 +1,3 @@
 # naduke
 
-> A website to efficiently add custom emoji to Slack
+> A website to efficiently add custom emoji alias to Slack
