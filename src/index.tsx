@@ -1,4 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-ReactDOM.render(<h1>naduke</h1>, document.getElementById('root'))
+import { UserContainer } from './containers'
+
+import { IndexComponent } from './components'
+
+ReactDOM.render(
+  <UserContainer.Provider>
+    <IndexComponent />
+  </UserContainer.Provider>,
+  document.getElementById('root')
+)
