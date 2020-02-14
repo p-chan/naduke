@@ -29,14 +29,7 @@ export const EmojiListComponent: React.FC = () => {
   }, [])
 
   const itemComponents = emojiListState.map(item => {
-    return (
-      <ItemComponent
-        key={item.name}
-        name={item.name}
-        url={item.url}
-        aliases={item.aliases}
-      />
-    )
+    return <ItemComponent key={item.name} emoji={item} />
   })
 
   return (

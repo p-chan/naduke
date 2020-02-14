@@ -3,30 +3,28 @@ import * as React from 'react'
 import { emojiModel } from '../../models'
 
 type Props = {
-  name: emojiModel.EmojiModel['name']
-  url: emojiModel.EmojiModel['url']
-  aliases: emojiModel.EmojiModel['aliases']
+  emoji: emojiModel.EmojiModel
 }
 
 export const ItemComponent: React.FC<Props> = (props: Props) => {
-  const aliasesElementIfNeeded = props.aliases && (
+  const aliasesElementIfNeeded = props.emoji.aliases && (
     <ul>
-      {props.aliases.map(alias => (
+      {props.emoji.aliases.map(alias => (
         <li key={alias}>{alias}</li>
       ))}
     </ul>
   )
 
   return (
-    <li key={props.name}>
+    <li key={props.emoji.name}>
       <img
-        src={props.url}
+        src={props.emoji.url}
         width={128}
         height={128}
-        alt={props.name}
+        alt={props.emoji.name}
         loading={'lazy'}
       />
-      <span>{props.name}</span>
+      <span>{props.emoji.name}</span>
       {aliasesElementIfNeeded}
     </li>
   )
