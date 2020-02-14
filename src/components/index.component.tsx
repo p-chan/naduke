@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { UserContainer } from '../containers'
 
+import { HeaderComponent } from './header.component'
 import { AuthFormComponent } from './authForm.component'
 import { EmojiListComponent } from './emojiList.component'
 
@@ -11,7 +12,7 @@ export const IndexComponent: React.FC = () => {
   if (user.xoxsTokenState === '') {
     return (
       <>
-        <h1>naduke</h1>
+        <HeaderComponent />
         <AuthFormComponent />
       </>
     )
@@ -19,7 +20,7 @@ export const IndexComponent: React.FC = () => {
 
   return (
     <>
-      <h1>naduke</h1>
+      <HeaderComponent />
       <EmojiListComponent />
     </>
   )

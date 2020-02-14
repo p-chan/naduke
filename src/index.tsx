@@ -5,6 +5,8 @@ import { UserContainer } from './containers'
 
 import { IndexComponent } from './components'
 
+import 'ress'
+
 ReactDOM.render(
   <UserContainer.Provider>
     <IndexComponent />
