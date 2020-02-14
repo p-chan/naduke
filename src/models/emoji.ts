@@ -1,40 +1,46 @@
-type PureObject = {
-  [key: string]: string
-}
-
-type KeyValueObject<T> = {
-  key: string
-  value: T
-}
-
-const ToKeyValueObject = <ValueType>(
-  key: string,
-  value: ValueType
-): KeyValueObject<ValueType> => {
-  return { key: key, value: value }
+type PureObject<T> = {
+  [key: string]: T
 }
 
 export type EmojiModel = {
-  type: 'original' | 'alias'
-  name: string
-  url?: string
-  originalName?: string
-}
-
-export type IntegratedEmojiModel = {
   name: string
   url: string
-  aliases: string[]
+  aliases?: string[]
 }
 
-export const createEmoji = (json: KeyValueObject<string>): EmojiModel => {
-  return json.value.match(/^alias:/)
-    ? { type: 'alias', name: json.key, originalName: json.value.split(':')[1] }
-    : { type: 'original', name: json.key, url: json.value }
-}
+const getEmojiValueType = (value: string) =>
+  value.match(/^alias:/) ? 'alias' : 'original'
 
-export const createEmojis = (json: PureObject): EmojiModel[] => {
-  return Object.entries(json).map(([key, value]) => {
-    return createEmoji(ToKeyValueObject<string>(key, value))
-  })
+export const createEmojis = (json: PureObject<string>): EmojiModel[] => {
+  const emojiListObject: {
+    [key: string]: EmojiModel
+  } = {}
+
+  const emojiAliasListObject: {
+    [key: string]: string[]
+  } = {}
+
+  for (const [key, value] of Object.entries(json)) {
+    if (getEmojiValueType(value) === 'original') {
+      emojiListObject[key] = {
+        name: key,
+        url: value
+      }
+    } else {
+      const originalName = value.split(':')[1]
+      if (!emojiAliasListObject[originalName]) {
+        emojiAliasListObject[originalName] = [key]
+      } else {
+        emojiAliasListObject[originalName].push(key)
+      }
+    }
+  }
+
+  for (const [key, values] of Object.entries(emojiAliasListObject)) {
+    if (emojiListObject[key]) {
+      emojiListObject[key].aliases = values
+    }
+  }
+
+  return Object.values(emojiListObject)
 }

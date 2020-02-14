@@ -13,41 +13,6 @@ export const EmojiListComponent: React.FC = () => {
     emojiModel.EmojiModel[]
   >([])
 
-  const [
-    integratedEmojiListState,
-    setIntegratedEmojiListState
-  ] = React.useState<emojiModel.IntegratedEmojiModel[]>([])
-
-  React.useEffect(() => {
-    const integratedEmojiObject: {
-      [key: string]: emojiModel.IntegratedEmojiModel
-    } = {}
-
-    for (let i = 0; i < emojiListState.length; i++) {
-      const item = emojiListState[i]
-
-      if (item.type === 'original') {
-        integratedEmojiObject[item.name] = {
-          name: item.name,
-          url: item.url,
-          aliases: []
-        }
-      }
-    }
-
-    for (let i = 0; i < emojiListState.length; i++) {
-      const item = emojiListState[i]
-
-      if (item.type === 'alias') {
-        if (item.name !== 'white_square' && item.name !== 'black_square') {
-          integratedEmojiObject[item.originalName]['aliases'].push(item.name)
-        }
-      }
-    }
-
-    setIntegratedEmojiListState(Object.values(integratedEmojiObject))
-  }, [emojiListState])
-
   React.useEffect(() => {
     const formData = new FormData()
 
@@ -63,7 +28,7 @@ export const EmojiListComponent: React.FC = () => {
       })
   }, [])
 
-  const itemComponents = integratedEmojiListState.map(item => {
+  const itemComponents = emojiListState.map(item => {
     return (
       <ItemComponent
         key={item.name}

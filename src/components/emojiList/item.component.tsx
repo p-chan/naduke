@@ -3,9 +3,9 @@ import * as React from 'react'
 import { emojiModel } from '../../models'
 
 type Props = {
-  name: emojiModel.IntegratedEmojiModel['name']
-  url: emojiModel.IntegratedEmojiModel['url']
-  aliases: emojiModel.IntegratedEmojiModel['aliases']
+  name: emojiModel.EmojiModel['name']
+  url: emojiModel.EmojiModel['url']
+  aliases: emojiModel.EmojiModel['aliases']
 }
 
 export const ItemComponent: React.FC<Props> = (props: Props) => {
