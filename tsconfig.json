@@ -3,6 +3,7 @@
     "target": "ESNEXT",
     "module": "commonjs",
     "jsx": "react",
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "esModuleInterop": true
   }
 }

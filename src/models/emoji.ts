@@ -21,6 +21,12 @@ export type EmojiModel = {
   originalName?: string
 }
 
+export type IntegratedEmojiModel = {
+  name: string
+  url: string
+  aliases: string[]
+}
+
 export const createEmoji = (json: KeyValueObject<string>): EmojiModel => {
   return json.value.match(/^alias:/)
     ? { type: 'alias', name: json.key, originalName: json.value.split(':')[1] }
