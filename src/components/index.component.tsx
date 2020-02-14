@@ -8,19 +8,19 @@ import { EmojiListComponent } from './emojiList.component'
 export const IndexComponent: React.FC = () => {
   const user = UserContainer.useContainer()
 
-  const authFormComponentIfNeeded = user.xoxsTokenState === '' && (
-    <AuthFormComponent />
-  )
-
-  const emojiListComponentIfNeeded = user.xoxsTokenState !== '' && (
-    <EmojiListComponent />
-  )
+  if (user.xoxsTokenState === '') {
+    return (
+      <>
+        <h1>naduke</h1>
+        <AuthFormComponent />
+      </>
+    )
+  }
 
   return (
     <>
       <h1>naduke</h1>
-      {authFormComponentIfNeeded}
-      {emojiListComponentIfNeeded}
+      <EmojiListComponent />
     </>
   )
 }
